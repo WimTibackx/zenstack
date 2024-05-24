@@ -73,7 +73,7 @@ ${sharedModel}
     });
 
     it('clear output', async () => {
-        const { name: projectDir } = tmp.dirSync();
+        const { name: projectDir } = tmp.dirSync({ unsafeCleanup: true });
         fs.mkdirSync(path.join(projectDir, 'swr'), { recursive: true });
         fs.writeFileSync(path.join(projectDir, 'swr', 'test.txt'), 'hello');
 
@@ -103,7 +103,7 @@ ${sharedModel}
     });
 
     it('existing output as file', async () => {
-        const { name: projectDir } = tmp.dirSync();
+        const { name: projectDir } = tmp.dirSync({ unsafeCleanup: true });
         fs.writeFileSync(path.join(projectDir, 'swr'), 'hello');
 
         await expect(

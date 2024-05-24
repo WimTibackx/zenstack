@@ -729,7 +729,7 @@ describe('Zod plugin tests', () => {
     });
 
     it('clear output', async () => {
-        const { name: projectDir } = tmp.dirSync();
+        const { name: projectDir } = tmp.dirSync({ unsafeCleanup: true });
         fs.mkdirSync(path.join(projectDir, 'zod'), { recursive: true });
         fs.writeFileSync(path.join(projectDir, 'zod', 'test.txt'), 'hello');
 
@@ -764,7 +764,7 @@ describe('Zod plugin tests', () => {
     });
 
     it('existing output as file', async () => {
-        const { name: projectDir } = tmp.dirSync();
+        const { name: projectDir } = tmp.dirSync({ unsafeCleanup: true });
         fs.writeFileSync(path.join(projectDir, 'zod'), 'hello');
 
         await expect(

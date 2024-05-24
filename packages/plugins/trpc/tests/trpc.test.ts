@@ -422,7 +422,7 @@ model Foo {
     });
 
     it('clear output', async () => {
-        const { name: projectDir } = tmp.dirSync();
+        const { name: projectDir } = tmp.dirSync({ unsafeCleanup: true });
         fs.mkdirSync(path.join(projectDir, 'trpc'), { recursive: true });
         fs.writeFileSync(path.join(projectDir, 'trpc', 'test.txt'), 'hello');
 
@@ -452,7 +452,7 @@ model Foo {
     });
 
     it('existing output as file', async () => {
-        const { name: projectDir } = tmp.dirSync();
+        const { name: projectDir } = tmp.dirSync({ unsafeCleanup: true });
         fs.writeFileSync(path.join(projectDir, 'trpc'), 'hello');
 
         await expect(
