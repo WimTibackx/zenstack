@@ -20,7 +20,10 @@ describe('Prisma generator test', () => {
         console.log(`Project dir: ${r.name}`);
         process.chdir(r.name);
 
-        fs.cpSync(path.join(__dirname, '../projects/prisma-generator-test-project'), r.name, {recursive: true});
+        fs.cpSync(path.join(__dirname, '../projects/prisma-generator-test-project/package.json'), path.join(r.name, 'package.json'), {recursive: true});
+        fs.cpSync(path.join(__dirname, '../projects/prisma-generator-test-project/.npmrc'), path.join(r.name, '.npmrc'), {recursive: true});
+
+        execSync('pnpm install --offline --ignore-workspace', {stdio: 'ignore', cwd: r.name});
     });
 
     afterEach(() => {
