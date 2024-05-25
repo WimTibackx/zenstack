@@ -20,8 +20,7 @@ describe('Prisma generator test', () => {
         console.log(`Project dir: ${r.name}`);
         process.chdir(r.name);
 
-        execSync('npm init -y', { stdio: 'ignore' });
-        execSync('npm install prisma');
+        fs.cpSync(path.join(__dirname, '../projects/prisma-generator-test-project'), r.name, {recursive: true});
     });
 
     afterEach(() => {

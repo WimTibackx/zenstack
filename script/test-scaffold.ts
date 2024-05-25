@@ -8,17 +8,18 @@ if (fs.existsSync(scaffoldPath)) {
 }
 fs.mkdirSync(scaffoldPath, { recursive: true });
 
-function run(cmd: string) {
-    console.log(`Running: ${cmd}, in ${scaffoldPath}`);
+function run(cmd: string, path: string) {
+    console.log(`Running: ${cmd}, in ${path}`);
     try {
-        execSync(cmd, { cwd: scaffoldPath, stdio: 'ignore' });
+        execSync(cmd, { cwd: path, stdio: 'ignore' });
     } catch (err) {
         console.error(`Test project scaffolding cmd error: ${err}`);
         throw err;
     }
 }
 
-run('npm init -y');
-run('npm i --no-audit --no-fund typescript prisma @prisma/client zod decimal.js @types/node');
+run('npm init -y', scaffoldPath);
+run('npm i --no-audit --no-fund typescript prisma @prisma/client zod decimal.js @types/node', scaffoldPath);
+run('npm install --no-progress --no-audit --no-fund', path.join(__dirname, '../packages/schema/tests/projects/prisma-generator-test-project'));
 
 console.log('Test scaffold setup complete.');
