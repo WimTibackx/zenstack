@@ -1,15 +1,11 @@
 import path from 'path';
 import fs from 'fs';
 import { execSync } from 'child_process';
+import { NPM_RC_CONTENTS, NPM_RC_FILE, PNPM_STORE_PATH } from './test-utils';
 
-const pnpmStorePath = path.resolve(__dirname, '../.pnpm-test-store');
-if (!fs.existsSync(pnpmStorePath)) {
-    fs.mkdirSync(pnpmStorePath)
+if (!fs.existsSync(PNPM_STORE_PATH)) {
+    fs.mkdirSync(PNPM_STORE_PATH)
 }
-
-const npmrc = `
-store-dir = ${pnpmStorePath}
-`;
 
 function run(cmd: string, path: string) {
     console.log(`Running: ${cmd}, in ${path}`);
@@ -35,14 +31,12 @@ function setUpProject(projectPath: string) {
         fs.mkdirSync(projectPath, { recursive: true });
         run('npm init -y', projectPath);
     }
-    fs.writeFileSync(path.join(projectPath, '.npmrc'), npmrc, { encoding: 'utf-8', flag: 'w+' });
+    fs.writeFileSync(path.join(projectPath, NPM_RC_FILE), NPM_RC_CONTENTS, { encoding: 'utf-8', flag: 'w+' });
     run('pnpm i --ignore-workspace', projectPath);
 }
 
 const scaffoldPath = path.join(__dirname, '../.test/scaffold');
 setUpProject(scaffoldPath);
 run('pnpm i --ignore-workspace typescript prisma @prisma/client zod decimal.js @types/node', scaffoldPath);
-
-setUpProject(path.join(__dirname, '../packages/schema/tests/projects/prisma-generator-test-project'));
 
 console.log('Test scaffold setup complete.');
