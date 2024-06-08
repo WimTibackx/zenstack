@@ -276,7 +276,7 @@ ${sharedModel}
             {
                 provider: 'postgresql',
                 pushDb: false,
-                extraDependencies: ['svelte@^3.0.0', '@tanstack/svelte-query@^5.0.0'],
+                extraDependencies: ['svelte@^3.54.0', '@tanstack/svelte-query@^5.13.2'],
                 copyDependencies: [path.resolve(__dirname, '../dist')],
                 compile: true,
                 extraSourceFiles: [svelteAppSource],
