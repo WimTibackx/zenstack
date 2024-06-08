@@ -1,12 +1,10 @@
+import type { DbOperations, ZodSchemas } from '@zenstackhq/runtime';
+import { CrudFailureReason, PrismaErrorCode } from '@zenstackhq/runtime/constants';
 import {
-    CrudFailureReason,
-    DbOperations,
-    PrismaErrorCode,
-    ZodSchemas,
     isPrismaClientKnownRequestError,
     isPrismaClientUnknownRequestError,
     isPrismaClientValidationError,
-} from '@zenstackhq/runtime';
+} from '@zenstackhq/runtime/error';
 import SuperJSON from 'superjson';
 import { upperCaseFirst } from 'upper-case-first';
 import { ZodError } from 'zod';

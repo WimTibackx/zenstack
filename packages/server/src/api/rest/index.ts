@@ -1,14 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { ModelMeta, ZodSchemas } from '@zenstackhq/runtime';
-import {
-    CrudFailureReason,
-    DbClientContract,
-    FieldInfo,
-    PrismaErrorCode,
-    enumerate,
-    getIdFields,
-    isPrismaClientKnownRequestError,
-} from '@zenstackhq/runtime';
+import type { DbClientContract, FieldInfo, ModelMeta, ZodSchemas } from '@zenstackhq/runtime';
+import { CrudFailureReason, PrismaErrorCode } from '@zenstackhq/runtime/constants';
+import { enumerate, getIdFields } from '@zenstackhq/runtime/cross';
+import { isPrismaClientKnownRequestError } from '@zenstackhq/runtime/error';
 import { paramCase } from 'change-case';
 import { lowerCaseFirst } from 'lower-case-first';
 import SuperJSON from 'superjson';

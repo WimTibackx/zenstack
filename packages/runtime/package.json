@@ -68,6 +68,18 @@
         "./models": {
             "types": "./models.d.ts"
         },
+        "./error": {
+            "types": "./error.d.ts",
+            "import": "./error.mjs",
+            "require": "./error.js",
+            "default": "./error.js"
+        },
+        "./constants": {
+            "types": "./constants.d.ts",
+            "import": "./constants.mjs",
+            "require": "./constants.js",
+            "default": "./constants.js"
+        },
         "./package.json": {
             "default": "./package.json"
         }
