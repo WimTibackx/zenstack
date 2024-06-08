@@ -118,8 +118,10 @@ export type SchemaLoadOptions = {
     pushDb?: boolean;
     fullZod?: boolean;
     extraDependencies?: string[];
+    extraDevDependencies?: string[];
     copyDependencies?: string[];
     compile?: boolean;
+    tsConfigExtends?: string;
     customSchemaFilePath?: string;
     output?: string;
     logPrismaQuery?: boolean;
@@ -247,6 +249,10 @@ export async function loadSchema(schema: string, options?: SchemaLoadOptions) {
         console.log(`Installing dependency ${opt.extraDependencies.join(' ')}`);
         installPackage(opt.extraDependencies.join(' '));
     }
+    if (opt.extraDevDependencies) {
+        console.log(`Installing dependency ${opt.extraDevDependencies.join(' ')}`);
+        installPackage(opt.extraDevDependencies.join(' '), true);
+    }
 
     opt.copyDependencies?.forEach((dep) => {
         const pkgJson = JSON.parse(fs.readFileSync(path.join(dep, 'package.json'), { encoding: 'utf-8' }));
@@ -287,6 +293,10 @@ export async function loadSchema(schema: string, options?: SchemaLoadOptions) {
         };
         tsconfig.include = ['**/*.ts'];
         tsconfig.exclude = ['node_modules'];
+
+        if (opt.tsConfigExtends) {
+            tsconfig.extends = opt.tsConfigExtends;
+        }
         fs.writeFileSync(path.join(projectDir, './tsconfig.json'), JSON.stringify(tsconfig, null, 2));
         run('npx tsc --project tsconfig.json');
     }

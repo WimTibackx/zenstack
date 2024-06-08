@@ -254,10 +254,12 @@ ${sharedModel}
             {
                 provider: 'postgresql',
                 pushDb: false,
-                extraDependencies: ['svelte@^3.0.0', '@tanstack/svelte-query@4.29.24'],
+                extraDependencies: ['svelte@^3.0.0', '@tanstack/svelte-query@^4.29.24'],
+                extraDevDependencies: ['@tsconfig/svelte@^3.0.0'],
                 copyDependencies: [path.resolve(__dirname, '../dist')],
                 compile: true,
                 extraSourceFiles: [svelteAppSource],
+                tsConfigExtends: '@tsconfig/svelte/tsconfig.json',
             }
         );
     });
@@ -277,9 +279,11 @@ ${sharedModel}
                 provider: 'postgresql',
                 pushDb: false,
                 extraDependencies: ['svelte@^3.54.0', '@tanstack/svelte-query@^5.13.2'],
+                extraDevDependencies: ['@tsconfig/svelte@^3.0.0'],
                 copyDependencies: [path.resolve(__dirname, '../dist')],
                 compile: true,
                 extraSourceFiles: [svelteAppSource],
+                tsConfigExtends: '@tsconfig/svelte/tsconfig.json',
             }
         );
     });
