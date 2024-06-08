@@ -16,7 +16,8 @@
         "publish-next": "pnpm --filter \"./packages/**\" -r publish --access public --tag next",
         "publish-preview-next": "pnpm --filter \"./packages/**\" -r publish --force --registry https://preview.registry.zenstack.dev/ --tag next",
         "unpublish-preview-next": "pnpm --recursive --shell-mode exec -- npm unpublish -f --registry https://preview.registry.zenstack.dev/ --tag next \"\\$PNPM_PACKAGE_NAME\"",
-        "publish-test": "pnpm --filter \"./packages/**\" -r publish --access public --tag test"
+        "publish-test": "pnpm --filter \"./packages/**\" -r publish --access public --tag test",
+        "publish-locally": "pnpm -r exec pnpm version prerelease --no-git-tag-version && pnpm --filter \"./packages/**\" -r publish"
     },
     "keywords": [],
     "author": "",

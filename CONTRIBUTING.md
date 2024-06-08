@@ -117,6 +117,6 @@ You can use one of the two ways to test changed packages locally:
 
 -   Publish packages to a local registry
 
-    You can run a local NPM registry (like [Verdaccio](https://verdaccio.org/)) and publish the changed packages to it. There's a preconfigured `pnpm publish-preview` command that publishes all locally built packages to a local Verdaccio registry (http://localhost:4873).
+    You can run a local NPM registry (like [Verdaccio](https://verdaccio.org/)) and publish the changed packages to it. There's a preconfigured `pnpm publish-locally` command that publishes all locally built packages to a local Verdaccio registry (http://localhost:4873).
 
     The easiest way to install Verdaccio locally is to use [Docker](https://verdaccio.org/docs/docker/).
